@@ -8,48 +8,67 @@ printf("%s\n", nome);
 #include <stdlib.h>
 #include <string.h>
 
-void le_alunos(int* matriculas, char** nomes, int* n){
-   int mat, i=0, linha=0;
-   char nome[50]={0};
+void le_alunos(int* matriculas, char nomes[][50], int* n){
+   int mat, i, linha=0;
+   char nome[50];
    char c;
    FILE *f;
-   f = fopen("aluno.txt", "r");
+   f = fopen("alunos.txt", "r");
    if(f==NULL){
       printf("Erro ao abrir arquivo.\n");
       exit(1);
       }
-   while(feof(f)!=0){
-      if(fscanf(f, "%d, &mat")==0)
+   while(feof(f)==0){
+      if(fscanf(f, "%d", &mat)<0)
          break;
+      i=0;
       c=fgetc(f);
       while(c != '\n'){
          nome[i]=c;
-         c=fgetc(f);
          i++;
+         c=fgetc(f);
       }
       nome[i]='\0';
       matriculas[linha]=mat;
       strcpy(nomes[linha], nome);
+      linha++;
    }
    *n=linha;
    fclose(f);
 }
 
+void imprime_matriculas(int matricula[],int n){
+   int i;
+   for(i=0; i<n; i++){
+      printf("%d\n", matricula[i]);
+   }
+}
+
+void imprime_nomes(char nomes[][50], int n){
+   int i;
+   for(i=0; i<n; i++){
+      printf("%s", nomes)
+   }
+}
+
 int main (int argc, char **argv){
-   char nomes[50][50]={0};
+   char nomes[50][50];
    int matricula[50];
-   char* nome_argumento= NULL;
+   int n=0;
+   char nome[50];
+   char *busca= nome;
+   busca= argv[1];
    if(argc>1){
-      nome_argumento= argv[1];
-      printf("%s\n", nome_argumento);
+      le_alunos(matricula, nomes, &n);
+      imprime_matriculas(matricula, n);
    }
    else{
       printf("Ha argumento faltando para o programa!\n");
-      exit(0);
    }
 
    return 0;
 }
+
 
 /* funcoes de entrada e saida de arquivos:
 strcmp --> comparar duas strings
