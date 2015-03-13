@@ -47,7 +47,15 @@ void imprime_matriculas(int matricula[],int n){
 void imprime_nomes(char nomes[][50], int n){
    int i;
    for(i=0; i<n; i++){
-      printf("%s", nomes)
+         printf("%s\n", nomes[i]);
+      }
+}
+
+void search(char nomes[][50], int matricula[], int n, char *busca){
+   int i=0;
+   for(i=0; i<n; i++){
+      if(strcasestr(nomes[i], busca)!=NULL)
+         printf("%d  %s\n", matricula[i], nomes[i]);
    }
 }
 
@@ -60,7 +68,7 @@ int main (int argc, char **argv){
    busca= argv[1];
    if(argc>1){
       le_alunos(matricula, nomes, &n);
-      imprime_matriculas(matricula, n);
+      search(nomes, matricula, n, busca);
    }
    else{
       printf("Ha argumento faltando para o programa!\n");
@@ -68,6 +76,7 @@ int main (int argc, char **argv){
 
    return 0;
 }
+
 
 
 /* funcoes de entrada e saida de arquivos:
