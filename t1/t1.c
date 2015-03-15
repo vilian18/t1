@@ -53,9 +53,8 @@ void le_alunos(int* matriculas, char nomes[][50], int* n){
 void search(char nomes[][50], int matricula_alunos[], int matricula_notas[], float notas[], int *n, char *busca){
    int i=0, cont;
    for(i=0; i<*n; i++){
-      if(strcasestr(nomes[i], busca)!=NULL){
+      if(strcasestr(nomes[i], busca)!=NULL)
          printf("Matricula: %d  Aluno: %s  Media: %g\n\n", matricula_notas[i], nomes[i], notas[i]);
-      }
    }
 }
 
