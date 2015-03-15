@@ -1,9 +1,4 @@
-/* testar se foi passado argumento para o programa:
-if( argc>1){
-   nome= argv[1];
-}
-printf("%s\n", nome);
-*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -55,32 +50,14 @@ void le_alunos(int* matriculas, char nomes[][50], int* n){
    fclose(f);
 }
 
-void imprime_matriculas(int matricula[],int n){
-   int i;
-   for(i=0; i<n; i++){
-      printf("%d\n", matricula[i]);
-   }
-}
-
-void imprime_nomes(char nomes[][50], int n){
-   int i;
-   for(i=0; i<n; i++){
-         printf("%s\n", nomes[i]);
-      }
-}
-
 void search(char nomes[][50], int matricula_alunos[], int matricula_notas[], float notas[], int *n, char *busca){
    int i=0, cont;
    for(i=0; i<*n; i++){
       if(strcasestr(nomes[i], busca)!=NULL){
-         printf("%s\n", nomes[i]);
-         /*while(matricula_alunos[cont]!= matricula_notas[cont])
-            cont++;*/
-         printf("Matricula: %d  Aluno: %s Media: %g\n", matricula_notas[i], nomes[i], notas[i]);
+         printf("Matricula: %d  Aluno: %s  Media: %g\n\n", matricula_notas[i], nomes[i], notas[i]);
       }
    }
 }
-
 
 int main (int argc, char **argv){
    char nomes[50][50];
@@ -98,20 +75,5 @@ int main (int argc, char **argv){
    else{
       printf("Ha argumento faltando para o programa!\n");
    }
-
    return 0;
 }
-
-
-
-/* funcoes de entrada e saida de arquivos:
-strcmp --> comparar duas strings
-if(strcmp(s1,s2)==0)
-   iguais
-fopen --> abrir arquivo
-fclose --> fechar arquivo
-fgetc --> le 1 caracter
-feof --> testar se chegou no final do arquivo
-if(feof(F)==0) --> significa o final do arquivo
-   fclose(F);
-*/
